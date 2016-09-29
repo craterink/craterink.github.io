@@ -1,4 +1,3 @@
-// Code goes here
 var p = 0.5;
 var start = 0;
 var delta = 1;
@@ -6,6 +5,9 @@ var walkData;
 
 var width = 100;
 var height = 100;
+
+var lineChart;
+var expChart;
 
 function RandomWalk(p, start, delta) {
     this.p = p;
@@ -70,7 +72,10 @@ function doWalk() {
   
   doAWalk();
   
-   var lineChart = new Chart(ctx, 
+  if(lineChart !== undefined) {
+    lineChart.destroy();
+  }
+   lineChart = new Chart(ctx, 
     {
       type: 'line',
       data: walkData,
@@ -128,7 +133,10 @@ function averages() {
   ctxExp.canvas.width = width;
   ctxExp.canvas.height = height;
   
-  var expChart = new Chart(ctxExp, 
+  if(expChart !== undefined) {
+    expChart.destroy();
+  }
+  expChart = new Chart(ctxExp, 
   {
     type: 'line',
     responsive:false,
