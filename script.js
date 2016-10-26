@@ -1,3 +1,4 @@
+////////////// --------- RANDOM WALKS ----------
 var p = 0.5;
 var start = 0;
 var delta = 1;
@@ -155,5 +156,63 @@ function averages() {
 
 $(doWalk);
 $(averages);
+
+
+////////// -------   GENERATING FUNCTIONS -----------
+
+var genFunctionOptions;
+
+// plots generating function of mean
+function plotGenFunction(mean, selector) {
+  var fnStr = 'exp(-' + mean + '+' + mean + '*x)';
+  var derivativeStr = mean + '*' + fnStr;
+  var titleStr = 'Generating Function with m=' + mean;
+
+  var firstTime = genFunctionOptions === undefined;
+  firstTime && (genFunctionOptions = {});
+
+  // the following line does not work when replotting for some reason
+  genFunctionOptions.title = titleStr;
+  if(!firstTime) $('#genfunction .function-plot .title').html(titleStr);
+  
+  genFunctionOptions.target = selector;
+  genFunctionOptions.xAxis = {
+    label: 't',
+    domain: [0, 1.2]
+  };
+  genFunctionOptions.yAxis = {
+    label: 'G(t)',
+    domain: [0, 1.2]
+  };
+  genFunctionOptions.data = [{
+    fn: fnStr,
+    derivative: {
+      fn: derivativeStr,
+      updateOnMouseMove: true
+    },
+  }, {
+    fn: 'x',
+    skipTip: true,
+    color : 'pink',
+  }];
+  genFunctionOptions.annotations = [{
+    x : 1,
+    text : 'G(t) = 1'
+    }, {
+    y : 1,
+    text : 't = 1'
+  }];
+  
+  functionPlot(genFunctionOptions);
+}
+
+function doPlot() {
+  var mean = $('#mean').val().toString();
+  plotGenFunction(mean, '#genfunction');
+
+}
+
+$(doPlot);
+
 
 

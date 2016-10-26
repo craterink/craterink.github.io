@@ -3,12 +3,17 @@
 
   <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.min.js"></script>
-    <script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://maurizzzio.github.io/function-plot/js/function-plot.js"></script>
+	<script data-require="jquery@3.0.0" data-semver="3.0.0" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
 
   <body></body>
+	
+	<!-- RANDOM WALKS -->
+  
     <h>Single One-Dimensional Random Walk</h><br><br>
     p&nbsp=&nbsp<input id="pVal" type="text" value="0.5">&nbsp&nbsp
     <input type="button" value="Do the walk" onclick="doWalk()" class="btn">
@@ -20,6 +25,15 @@
     n&nbsp=&nbsp<input id="nValExp"type="text" value="10">&nbsp&nbsp
     <input type="button" value="Run averages" onclick="averages()" class="btn">
     <canvas id="expChart"></canvas>
+	
+	<!-- GENERATING FUNCTIONS -->
+	
+	<br><br><br> m&nbsp=&nbsp
+	<input id="mean" type="text" value="2"> &nbsp&nbsp
+	<input type="button" value="Plot" onclick="doPlot()" class="btn">
+	<br><br>
+	<div id="genfunction"></div>
+	
   </body>
 
 </html>
